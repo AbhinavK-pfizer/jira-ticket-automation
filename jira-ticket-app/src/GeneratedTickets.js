@@ -20,7 +20,7 @@ function GeneratedTickets() {
             <div className='flex-col justify-center max-w-md w-full min-h-[90vh] bg-light-gray rounded-lg shadow-lg p-6'>
                 <button onClick={handleBack} className='relative inline-block flex w-60 h-10 ml-0 mb-0'>
                     <img src={Back} alt="Back Icon" className="absolute top-0.5 left-0 w-6 h-6" />
-                    <div className='absolute top-0 left-6 font-notoSans text-lg font-bold'>Return to Transcript</div>
+                    <div className='absolute top-0 left-6 font-notoSans text-lg font-bold text-black'>Return to Transcript</div>
                 </button>
                 <div className='relative inline-block flex w-96 h-40 justify-center items-center bg-creamish transition duration-300 hover:bg-ticket-hover fade-in-up rounded-lg shadow-lg p-6 mb-6'>
                     <img src={Epic} alt="Epic Icon" className="absolute top-3 left-3 w-8 h-8" />
