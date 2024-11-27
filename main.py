@@ -1,15 +1,16 @@
-from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, UploadFile, Form
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+import os
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {"message": "FastAPI is working!"}
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.post("/upload-transcript/")
-async def upload_transcript(file: UploadFile = File(...)):
-    content = await file.read()
-    transcript_text = content.decode("utf-8")
-    
-    return {"transcript": transcript_text}
+
