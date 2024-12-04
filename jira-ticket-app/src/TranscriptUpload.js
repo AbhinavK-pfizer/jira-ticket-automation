@@ -29,8 +29,24 @@ function TranscriptUpload() {
     setUploadType((prevType) => (prevType === 'text' ? 'file' : 'text'));
   };
 
-  const handleSubmit = () => {
-    navigate('/tickets');
+  const handleSubmit = async () => {
+    const transcript = new FormData();
+
+    if (uploadType === "text") {
+      transcript.append('transcriptText', transcriptText);
+    } else if (uploadType === "file") {
+      transcript.append('transcriptFile', transcriptFile);
+    } 
+
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/upload-transcript/", transcript, {
+        headers: {"Content-Type": "multipart/form-data"}
+      });
+
+      console.log("Response from Backend: ", response.data);
+    } catch (error) {
+      console.error("Error submitting transcript: ", error);
+    }
   };
 
   return (
