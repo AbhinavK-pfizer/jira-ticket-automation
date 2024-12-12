@@ -7,7 +7,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<TranscriptUpload />} />
+        <Route path="/upload-transcript" element={<TranscriptUpload />} />
         <Route path="/tickets" element={<GeneratedTickets />} />
       </Routes>
     </Router>
