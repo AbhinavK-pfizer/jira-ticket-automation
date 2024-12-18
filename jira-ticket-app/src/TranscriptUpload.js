@@ -32,11 +32,14 @@ function TranscriptUpload() {
   const handleSubmit = async () => {
     const transcript = new FormData();
 
-    if (uploadType === "text") {
+    if (uploadType === "text" && transcriptText.trim() !== "") {
       transcript.append('transcriptText', transcriptText);
-    } else if (uploadType === "file") {
+    } else if (uploadType === "file" && transcriptFile) {
       transcript.append('transcriptFile', transcriptFile);
-    } 
+    } else {
+      console.error("No input found");
+      return;
+    }
 
     try {
       const response = await axios.post("http://127.0.0.1:8000/upload-transcript/", transcript, {
