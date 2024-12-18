@@ -1,5 +1,7 @@
 from fastapi import FastAPI, UploadFile, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
+import os
 import httpx
 import json
 import requests
@@ -14,7 +16,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-VOX_API_URL = "https://mule4api-comm-amer-dev.pfizer.com/vessel-openai-api-v1/completion"
+load_dotenv()
+
+verification_url = os.getenv("verification_url")
+mulesoft_url = os.getenv("mulesoft_url")
+
+client_id = os.getenv("client_id")
+client_secret = os.getenv("client_secret")
 
 def generate_bearer(verification_url, client_id, client_secret):
     try:
@@ -52,7 +60,7 @@ async def upload_transcript(text: str = Form(None), file: UploadFile = None):
 
     try:
         async with httpx.AsyncClient() as client:
-            response = await client.post(VOX_API_URL, json=payload, headers=headers)
+            response = await client.post(mulesoft_url, json=payload, headers=headers)
 
             print(f"Response status code: {response.status_code}")
             print(f"Response content: {response.text}")
