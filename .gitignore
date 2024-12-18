@@ -1,1 +1,15 @@
+# Ignore environment files
 .env
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+
+# Ignore VSCode settings
+.vscode/
+
+# Ignore log files
+*.log
+
+# Ignore node_modules for Node.js projects
+node_modules/
